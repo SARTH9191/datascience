@@ -1,0 +1,1026 @@
+{
+  "CASE-AF82BC": {
+    "case_id": "CASE-AF82BC",
+    "status": "in_review",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-AF82BC",
+      "transactions": [],
+      "subject_name": "Global Trade Corp",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.690249",
+      "date_range_end": "2026-10-23T13:54:01.690280",
+      "total_amount_usd": 850000.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.690284",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-AF82BC",
+      "risk_tier": "critical",
+      "risk_score": 0.98,
+      "matched_typology": "TBML (Trade-Based)",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "invoice_mismatch",
+          "description": "Invoice amounts do not match SWIFT mt700.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        },
+        {
+          "signal_type": "high_risk_jurisdiction",
+          "description": "Funds routed via shell company in BVI.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.690364"
+    },
+    "narrative": {
+      "case_id": "CASE-AF82BC",
+      "part1_report_details": {
+        "date_of_sending": "2026-10-24",
+        "is_replacement": false,
+        "date_of_original_report": null
+      },
+      "part2_principal_officer": {
+        "bank_name": "TestBank",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "bank_category": "Public",
+        "officer_name": "PO",
+        "designation": "PO",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part3_reporting_branch": {
+        "branch_name": "Branch",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part4_linked_individuals": [
+        {
+          "name": "Global Trade Corp",
+          "customer_id": "CUST-1"
+        }
+      ],
+      "part5_linked_entities": [],
+      "part6_linked_accounts": [
+        {
+          "account_number": "ACC-1",
+          "account_holder_name": "Global Trade Corp"
+        }
+      ],
+      "part7_suspicion_details": {
+        "reasons_for_suspicion": [
+          "Over-invoicing of imported goods",
+          "Use of known high-risk correspondent banks"
+        ],
+        "grounds_of_suspicion": "Narrative regarding TBML (Trade-Based) by Global Trade Corp."
+      },
+      "part8_action_taken": {
+        "under_investigation": true,
+        "agency_details": "None"
+      },
+      "generation_timestamp": "2026-10-23T13:54:01.690418",
+      "narrative_body": "Narrative regarding TBML (Trade-Based) by Global Trade Corp.",
+      "summary": "Over-invoicing of imported goods; Use of known high-risk correspondent banks",
+      "subject_info": "Global Trade Corp",
+      "suspicious_activity": "Narrative regarding TBML (Trade-Based) by Global Trade Corp.",
+      "law_enforcement_note": "None"
+    },
+    "compliance": {
+      "case_id": "CASE-AF82BC",
+      "bsa_compliant": true,
+      "all_fields_complete": true,
+      "fincen_format_valid": true,
+      "compliance_issues": [],
+      "validated_timestamp": "2026-10-23T13:54:01.690428"
+    },
+    "audit": {
+      "case_id": "CASE-AF82BC",
+      "neo4j_audit_node_id": "node1",
+      "agent_timeline": [],
+      "shap_explanations": {},
+      "data_sources_cited": [
+        "SWIFT"
+      ],
+      "audit_timestamp": "2026-10-23T13:54:01.690437",
+      "immutable_hash": "1346e3e2382a4dc9ac4df5a92e9a991a"
+    },
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.690478"
+      }
+    ],
+    "error_log": []
+  },
+  "CASE-X912KL": {
+    "case_id": "CASE-X912KL",
+    "status": "in_review",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-X912KL",
+      "transactions": [],
+      "subject_name": "Elena Rostova",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.690611",
+      "date_range_end": "2026-10-23T13:54:01.690614",
+      "total_amount_usd": 49500.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.690617",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-X912KL",
+      "risk_tier": "red",
+      "risk_score": 0.88,
+      "matched_typology": "Structuring",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "velocity_spike",
+          "description": "5 transactions just under 10k in 48h.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.690634"
+    },
+    "narrative": {
+      "case_id": "CASE-X912KL",
+      "part1_report_details": {
+        "date_of_sending": "2026-10-24",
+        "is_replacement": false,
+        "date_of_original_report": null
+      },
+      "part2_principal_officer": {
+        "bank_name": "TestBank",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "bank_category": "Public",
+        "officer_name": "PO",
+        "designation": "PO",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part3_reporting_branch": {
+        "branch_name": "Branch",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part4_linked_individuals": [
+        {
+          "name": "Elena Rostova",
+          "customer_id": "CUST-1"
+        }
+      ],
+      "part5_linked_entities": [],
+      "part6_linked_accounts": [
+        {
+          "account_number": "ACC-1",
+          "account_holder_name": "Elena Rostova"
+        }
+      ],
+      "part7_suspicion_details": {
+        "reasons_for_suspicion": [
+          "Multiple deposits just below reporting threshold"
+        ],
+        "grounds_of_suspicion": "Narrative regarding Structuring by Elena Rostova."
+      },
+      "part8_action_taken": {
+        "under_investigation": true,
+        "agency_details": "None"
+      },
+      "generation_timestamp": "2026-10-23T13:54:01.690665",
+      "narrative_body": "Narrative regarding Structuring by Elena Rostova.",
+      "summary": "Multiple deposits just below reporting threshold",
+      "subject_info": "Elena Rostova",
+      "suspicious_activity": "Narrative regarding Structuring by Elena Rostova.",
+      "law_enforcement_note": "None"
+    },
+    "compliance": {
+      "case_id": "CASE-X912KL",
+      "bsa_compliant": true,
+      "all_fields_complete": true,
+      "fincen_format_valid": true,
+      "compliance_issues": [],
+      "validated_timestamp": "2026-10-23T13:54:01.690679"
+    },
+    "audit": {
+      "case_id": "CASE-X912KL",
+      "neo4j_audit_node_id": "node1",
+      "agent_timeline": [],
+      "shap_explanations": {},
+      "data_sources_cited": [
+        "SWIFT"
+      ],
+      "audit_timestamp": "2026-10-23T13:54:01.690686",
+      "immutable_hash": "a2a49936090041fea74ba2534ad9b65a"
+    },
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.690705"
+      }
+    ],
+    "error_log": []
+  },
+  "CASE-M019ZZ": {
+    "case_id": "CASE-M019ZZ",
+    "status": "filed",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-M019ZZ",
+      "transactions": [],
+      "subject_name": "Crypto Exchange Ltd",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.690758",
+      "date_range_end": "2026-10-23T13:54:01.690761",
+      "total_amount_usd": 2100000.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.690764",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-M019ZZ",
+      "risk_tier": "red",
+      "risk_score": 0.92,
+      "matched_typology": "Crypto Layering",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "unusual_volume",
+          "description": "Inbound fiat immediately converted and transferred out.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        },
+        {
+          "signal_type": "darknet_exposure",
+          "description": "Wallet hop analysis shows link to sanctioned entities.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.690777"
+    },
+    "narrative": {
+      "case_id": "CASE-M019ZZ",
+      "part1_report_details": {
+        "date_of_sending": "2026-10-24",
+        "is_replacement": false,
+        "date_of_original_report": null
+      },
+      "part2_principal_officer": {
+        "bank_name": "TestBank",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "bank_category": "Public",
+        "officer_name": "PO",
+        "designation": "PO",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part3_reporting_branch": {
+        "branch_name": "Branch",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part4_linked_individuals": [
+        {
+          "name": "Crypto Exchange Ltd",
+          "customer_id": "CUST-1"
+        }
+      ],
+      "part5_linked_entities": [],
+      "part6_linked_accounts": [
+        {
+          "account_number": "ACC-1",
+          "account_holder_name": "Crypto Exchange Ltd"
+        }
+      ],
+      "part7_suspicion_details": {
+        "reasons_for_suspicion": [
+          "Rapid fiat-to-crypto conversion",
+          "Interaction with mixer services"
+        ],
+        "grounds_of_suspicion": "Narrative regarding Crypto Layering by Crypto Exchange Ltd."
+      },
+      "part8_action_taken": {
+        "under_investigation": true,
+        "agency_details": "None"
+      },
+      "generation_timestamp": "2026-10-23T13:54:01.690804",
+      "narrative_body": "Narrative regarding Crypto Layering by Crypto Exchange Ltd.",
+      "summary": "Rapid fiat-to-crypto conversion; Interaction with mixer services",
+      "subject_info": "Crypto Exchange Ltd",
+      "suspicious_activity": "Narrative regarding Crypto Layering by Crypto Exchange Ltd.",
+      "law_enforcement_note": "None"
+    },
+    "compliance": {
+      "case_id": "CASE-M019ZZ",
+      "bsa_compliant": true,
+      "all_fields_complete": true,
+      "fincen_format_valid": true,
+      "compliance_issues": [],
+      "validated_timestamp": "2026-10-23T13:54:01.690810"
+    },
+    "audit": {
+      "case_id": "CASE-M019ZZ",
+      "neo4j_audit_node_id": "node1",
+      "agent_timeline": [],
+      "shap_explanations": {},
+      "data_sources_cited": [
+        "SWIFT"
+      ],
+      "audit_timestamp": "2026-10-23T13:54:01.690817",
+      "immutable_hash": "1f1facc561f847e79073593272c1f7ac"
+    },
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.690828"
+      }
+    ],
+    "error_log": []
+  },
+  "CASE-Q772BB": {
+    "case_id": "CASE-Q772BB",
+    "status": "in_review",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-Q772BB",
+      "transactions": [],
+      "subject_name": "Nexus Imports",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.690875",
+      "date_range_end": "2026-10-23T13:54:01.690877",
+      "total_amount_usd": 125000.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.690879",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-Q772BB",
+      "risk_tier": "amber",
+      "risk_score": 0.65,
+      "matched_typology": "Smurfing",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "many_to_one",
+          "description": "Dozens of small cash deposits aggregated into one corporate account.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.690889"
+    },
+    "narrative": {
+      "case_id": "CASE-Q772BB",
+      "part1_report_details": {
+        "date_of_sending": "2026-10-24",
+        "is_replacement": false,
+        "date_of_original_report": null
+      },
+      "part2_principal_officer": {
+        "bank_name": "TestBank",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "bank_category": "Public",
+        "officer_name": "PO",
+        "designation": "PO",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part3_reporting_branch": {
+        "branch_name": "Branch",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part4_linked_individuals": [
+        {
+          "name": "Nexus Imports",
+          "customer_id": "CUST-1"
+        }
+      ],
+      "part5_linked_entities": [],
+      "part6_linked_accounts": [
+        {
+          "account_number": "ACC-1",
+          "account_holder_name": "Nexus Imports"
+        }
+      ],
+      "part7_suspicion_details": {
+        "reasons_for_suspicion": [
+          "Unexplained aggregation of funds"
+        ],
+        "grounds_of_suspicion": "Narrative regarding Smurfing by Nexus Imports."
+      },
+      "part8_action_taken": {
+        "under_investigation": true,
+        "agency_details": "None"
+      },
+      "generation_timestamp": "2026-10-23T13:54:01.690912",
+      "narrative_body": "Narrative regarding Smurfing by Nexus Imports.",
+      "summary": "Unexplained aggregation of funds",
+      "subject_info": "Nexus Imports",
+      "suspicious_activity": "Narrative regarding Smurfing by Nexus Imports.",
+      "law_enforcement_note": "None"
+    },
+    "compliance": {
+      "case_id": "CASE-Q772BB",
+      "bsa_compliant": true,
+      "all_fields_complete": true,
+      "fincen_format_valid": true,
+      "compliance_issues": [],
+      "validated_timestamp": "2026-10-23T13:54:01.690919"
+    },
+    "audit": {
+      "case_id": "CASE-Q772BB",
+      "neo4j_audit_node_id": "node1",
+      "agent_timeline": [],
+      "shap_explanations": {},
+      "data_sources_cited": [
+        "SWIFT"
+      ],
+      "audit_timestamp": "2026-10-23T13:54:01.690924",
+      "immutable_hash": "d15f52c8a4d44374b589c9ff03a69d4d"
+    },
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.690933"
+      }
+    ],
+    "error_log": []
+  },
+  "CASE-V441OO": {
+    "case_id": "CASE-V441OO",
+    "status": "dismissed",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-V441OO",
+      "transactions": [],
+      "subject_name": "Local Bakery LLC",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.690973",
+      "date_range_end": "2026-10-23T13:54:01.690975",
+      "total_amount_usd": 45000.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.690977",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-V441OO",
+      "risk_tier": "amber",
+      "risk_score": 0.55,
+      "matched_typology": "Cash Intensive",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "cash_spike",
+          "description": "30% increase in cash deposits vs historical baseline.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.690986"
+    },
+    "narrative": {
+      "case_id": "CASE-V441OO",
+      "part1_report_details": {
+        "date_of_sending": "2026-10-24",
+        "is_replacement": false,
+        "date_of_original_report": null
+      },
+      "part2_principal_officer": {
+        "bank_name": "TestBank",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "bank_category": "Public",
+        "officer_name": "PO",
+        "designation": "PO",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part3_reporting_branch": {
+        "branch_name": "Branch",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part4_linked_individuals": [
+        {
+          "name": "Local Bakery LLC",
+          "customer_id": "CUST-1"
+        }
+      ],
+      "part5_linked_entities": [],
+      "part6_linked_accounts": [
+        {
+          "account_number": "ACC-1",
+          "account_holder_name": "Local Bakery LLC"
+        }
+      ],
+      "part7_suspicion_details": {
+        "reasons_for_suspicion": [
+          "Unusual seasonal cash volume"
+        ],
+        "grounds_of_suspicion": "Narrative regarding Cash Intensive by Local Bakery LLC."
+      },
+      "part8_action_taken": {
+        "under_investigation": true,
+        "agency_details": "None"
+      },
+      "generation_timestamp": "2026-10-23T13:54:01.691008",
+      "narrative_body": "Narrative regarding Cash Intensive by Local Bakery LLC.",
+      "summary": "Unusual seasonal cash volume",
+      "subject_info": "Local Bakery LLC",
+      "suspicious_activity": "Narrative regarding Cash Intensive by Local Bakery LLC.",
+      "law_enforcement_note": "None"
+    },
+    "compliance": {
+      "case_id": "CASE-V441OO",
+      "bsa_compliant": true,
+      "all_fields_complete": true,
+      "fincen_format_valid": true,
+      "compliance_issues": [],
+      "validated_timestamp": "2026-10-23T13:54:01.691014"
+    },
+    "audit": {
+      "case_id": "CASE-V441OO",
+      "neo4j_audit_node_id": "node1",
+      "agent_timeline": [],
+      "shap_explanations": {},
+      "data_sources_cited": [
+        "SWIFT"
+      ],
+      "audit_timestamp": "2026-10-23T13:54:01.691019",
+      "immutable_hash": "cfd04b41b87a45aea81238d5eba13495"
+    },
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.691028"
+      }
+    ],
+    "error_log": []
+  },
+  "CASE-K991WW": {
+    "case_id": "CASE-K991WW",
+    "status": "pending",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-K991WW",
+      "transactions": [],
+      "subject_name": "David Chen",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.691066",
+      "date_range_end": "2026-10-23T13:54:01.691068",
+      "total_amount_usd": 15000.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.691070",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-K991WW",
+      "risk_tier": "green",
+      "risk_score": 0.12,
+      "matched_typology": "Normal Activity",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "salary_deposit",
+          "description": "Standard monthly payroll logic, but triggered generic rule.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.691078"
+    },
+    "narrative": null,
+    "compliance": null,
+    "audit": null,
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.691084"
+      }
+    ],
+    "error_log": []
+  },
+  "CASE-B229YY": {
+    "case_id": "CASE-B229YY",
+    "status": "approved",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-B229YY",
+      "transactions": [],
+      "subject_name": "Tech Solutions Inc",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.691106",
+      "date_range_end": "2026-10-23T13:54:01.691108",
+      "total_amount_usd": 300000.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.691110",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-B229YY",
+      "risk_tier": "green",
+      "risk_score": 0.25,
+      "matched_typology": "B2B Payment",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "large_xfer",
+          "description": "Large B2B payment matches historical invoice payments.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.691119"
+    },
+    "narrative": {
+      "case_id": "CASE-B229YY",
+      "part1_report_details": {
+        "date_of_sending": "2026-10-24",
+        "is_replacement": false,
+        "date_of_original_report": null
+      },
+      "part2_principal_officer": {
+        "bank_name": "TestBank",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "bank_category": "Public",
+        "officer_name": "PO",
+        "designation": "PO",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part3_reporting_branch": {
+        "branch_name": "Branch",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part4_linked_individuals": [
+        {
+          "name": "Tech Solutions Inc",
+          "customer_id": "CUST-1"
+        }
+      ],
+      "part5_linked_entities": [],
+      "part6_linked_accounts": [
+        {
+          "account_number": "ACC-1",
+          "account_holder_name": "Tech Solutions Inc"
+        }
+      ],
+      "part7_suspicion_details": {
+        "reasons_for_suspicion": [
+          "Standard corporate invoice settlement"
+        ],
+        "grounds_of_suspicion": "Narrative regarding B2B Payment by Tech Solutions Inc."
+      },
+      "part8_action_taken": {
+        "under_investigation": true,
+        "agency_details": "None"
+      },
+      "generation_timestamp": "2026-10-23T13:54:01.691143",
+      "narrative_body": "Narrative regarding B2B Payment by Tech Solutions Inc.",
+      "summary": "Standard corporate invoice settlement",
+      "subject_info": "Tech Solutions Inc",
+      "suspicious_activity": "Narrative regarding B2B Payment by Tech Solutions Inc.",
+      "law_enforcement_note": "None"
+    },
+    "compliance": {
+      "case_id": "CASE-B229YY",
+      "bsa_compliant": true,
+      "all_fields_complete": true,
+      "fincen_format_valid": true,
+      "compliance_issues": [],
+      "validated_timestamp": "2026-10-23T13:54:01.691151"
+    },
+    "audit": {
+      "case_id": "CASE-B229YY",
+      "neo4j_audit_node_id": "node1",
+      "agent_timeline": [],
+      "shap_explanations": {},
+      "data_sources_cited": [
+        "SWIFT"
+      ],
+      "audit_timestamp": "2026-10-23T13:54:01.691156",
+      "immutable_hash": "8a9c158edf63463a91a9c64021300091"
+    },
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.691164"
+      }
+    ],
+    "error_log": []
+  },
+  "CASE-J883UU": {
+    "case_id": "CASE-J883UU",
+    "status": "in_review",
+    "raw_transaction": {
+      "mock": "data"
+    },
+    "normalized": {
+      "case_id": "CASE-J883UU",
+      "transactions": [],
+      "subject_name": "Maria Garcia",
+      "subject_account_ids": [
+        "ACC-123"
+      ],
+      "date_range_start": "2026-10-19T13:54:01.691203",
+      "date_range_end": "2026-10-23T13:54:01.691205",
+      "total_amount_usd": 9500.0,
+      "ingestion_timestamp": "2026-10-23T13:54:01.691207",
+      "presidio_masked": true
+    },
+    "risk_assessment": {
+      "case_id": "CASE-J883UU",
+      "risk_tier": "amber",
+      "risk_score": 0.45,
+      "matched_typology": "Structuring",
+      "typology_confidence": 0.95,
+      "signals": [
+        {
+          "signal_type": "velocity",
+          "description": "Wire transfer immediately followed by cash withdrawal.",
+          "confidence": 0.9,
+          "supporting_transaction_ids": []
+        }
+      ],
+      "shap_values": {
+        "amount": 0.15,
+        "velocity": 0.2,
+        "offshore": 0.3
+      },
+      "neo4j_pattern_found": true,
+      "assessment_timestamp": "2026-10-23T13:54:01.691216"
+    },
+    "narrative": {
+      "case_id": "CASE-J883UU",
+      "part1_report_details": {
+        "date_of_sending": "2026-10-24",
+        "is_replacement": false,
+        "date_of_original_report": null
+      },
+      "part2_principal_officer": {
+        "bank_name": "TestBank",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "bank_category": "Public",
+        "officer_name": "PO",
+        "designation": "PO",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part3_reporting_branch": {
+        "branch_name": "Branch",
+        "bsr_code": "123",
+        "fiu_id": "FIU123",
+        "address": "123",
+        "city_town_district": "City",
+        "state_country": "Country",
+        "pin_code": "123",
+        "telephone": "123",
+        "email": "1@2.com"
+      },
+      "part4_linked_individuals": [
+        {
+          "name": "Maria Garcia",
+          "customer_id": "CUST-1"
+        }
+      ],
+      "part5_linked_entities": [],
+      "part6_linked_accounts": [
+        {
+          "account_number": "ACC-1",
+          "account_holder_name": "Maria Garcia"
+        }
+      ],
+      "part7_suspicion_details": {
+        "reasons_for_suspicion": [
+          "Immediate withdrawal of wired funds"
+        ],
+        "grounds_of_suspicion": "Narrative regarding Structuring by Maria Garcia."
+      },
+      "part8_action_taken": {
+        "under_investigation": true,
+        "agency_details": "None"
+      },
+      "generation_timestamp": "2026-10-23T13:54:01.691237",
+      "narrative_body": "Narrative regarding Structuring by Maria Garcia.",
+      "summary": "Immediate withdrawal of wired funds",
+      "subject_info": "Maria Garcia",
+      "suspicious_activity": "Narrative regarding Structuring by Maria Garcia.",
+      "law_enforcement_note": "None"
+    },
+    "compliance": {
+      "case_id": "CASE-J883UU",
+      "bsa_compliant": true,
+      "all_fields_complete": true,
+      "fincen_format_valid": true,
+      "compliance_issues": [],
+      "validated_timestamp": "2026-10-23T13:54:01.691243"
+    },
+    "audit": {
+      "case_id": "CASE-J883UU",
+      "neo4j_audit_node_id": "node1",
+      "agent_timeline": [],
+      "shap_explanations": {},
+      "data_sources_cited": [
+        "SWIFT"
+      ],
+      "audit_timestamp": "2026-10-23T13:54:01.691248",
+      "immutable_hash": "049f6e599d494692b226181510878438"
+    },
+    "orchestrator_decision": null,
+    "analyst_approved_by": null,
+    "final_filed_timestamp": null,
+    "sar_report": null,
+    "audit_trail": [
+      {
+        "agent": "System",
+        "action": "Created mock case",
+        "confidence": 1.0,
+        "timestamp": "2026-10-23T13:54:01.691256"
+      }
+    ],
+    "error_log": []
+  }
+}
