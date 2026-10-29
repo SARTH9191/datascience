@@ -6,7 +6,7 @@ import { LayoutDashboard, FileText, Play, Shield, ExternalLink } from 'lucide-re
 const NAV = [
   { href: '/app', icon: LayoutDashboard, label: 'Dashboard', exact: true },
   { href: '/app/cases', icon: FileText, label: 'All Cases' },
-  { href: '/app/demo', icon: Play, label: 'Demo Center' },
+  { href: '/app/demo', icon: Play, label: 'Scenario Simulator' },
 ];
 
 export function Sidebar() {
@@ -53,9 +53,13 @@ export function Sidebar() {
           Landing Page
         </Link>
         <div className="px-2 pt-2 space-y-1.5">
-          {[['XGBoost + SHAP', 'blue'], ['Groq LLM', 'purple'], ['8 AML Rules', 'green']].map(([label, color]) => (
+          {[
+            ['XGBoost + SHAP', '#60a5fa'],
+            ['Groq LLM', '#c084fc'],
+            ['8 AML Rules', '#4ade80']
+          ].map(([label, colorHex]) => (
             <div key={label} className="flex items-center gap-2">
-              <div className={`w-1.5 h-1.5 rounded-full bg-${color}-400`} style={{flexShrink:0}} />
+              <div className="w-1.5 h-1.5 rounded-full" style={{ flexShrink: 0, backgroundColor: colorHex }} />
               <span className="text-[11px] text-zinc-500">{label}</span>
             </div>
           ))}

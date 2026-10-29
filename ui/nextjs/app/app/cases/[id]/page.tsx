@@ -136,10 +136,15 @@ export default function CaseDetail() {
   };
 
   const downloadPDF = async () => {
-    if (!data || !reportData) return;
+    if (!data) return;
     setPdfDownloading(true);
     try {
-      const blob = await sarApi.downloadPdfFromServer(id, reportData);
+      let currentReport = reportData;
+      if (!currentReport) {
+        currentReport = await sarApi.getReportData(id);
+        setReportData(currentReport);
+      }
+      const blob = await sarApi.downloadPdfFromServer(id, currentReport);
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

@@ -1,181 +1,496 @@
 'use client';
+
 import Link from 'next/link';
-import { Shield, ArrowRight, Zap, Lock, BarChart2, FileText, CheckCircle } from 'lucide-react';
+import {
+  Shield, ArrowRight, Zap, Lock, BarChart2, FileText, CheckCircle,
+  Activity, Play, Network, Tag, ClipboardList, Database, Cpu, ChevronRight, Layers
+} from 'lucide-react';
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 bg-black/90 backdrop-blur-xl">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center">
-            <Shield className="w-3.5 h-3.5 text-white" />
-          </div>
-          <span className="font-semibold text-sm text-white">SAR Platform</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <Link href="/app" className="text-sm text-zinc-400 hover:text-white transition-colors">Dashboard</Link>
-          <Link href="/app/demo" className="text-sm bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-            Try Demo →
+    <div style={{
+      minHeight: '100vh',
+      background: '#030712',
+      color: '#f3f4f6',
+      fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+      position: 'relative',
+      overflowX: 'hidden'
+    }}>
+      {/* Dynamic Background Glows */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        maxWidth: 1200,
+        height: 520,
+        background: 'radial-gradient(ellipse 70% 45% at 50% 0%, rgba(37, 99, 235, 0.22), transparent 75%)',
+        pointerEvents: 'none',
+        zIndex: 0
+      }} />
+
+      {/* Top Navigation */}
+      <nav style={{
+        position: 'sticky',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        backgroundColor: 'rgba(3, 7, 18, 0.85)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        padding: '14px 24px'
+      }}>
+        <div style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 16
+        }}>
+          {/* Brand */}
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+            <div style={{
+              width: 34,
+              height: 34,
+              borderRadius: 10,
+              background: 'linear-gradient(135deg, #2563eb, #4f46e5)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 0 16px rgba(37, 99, 235, 0.45)'
+            }}>
+              <Shield style={{ width: 18, height: 18, color: '#ffffff' }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+                SAR Platform
+              </div>
+              <div style={{ fontSize: 10, color: '#9ca3af', fontWeight: 500, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                AML Intelligence Suite
+              </div>
+            </div>
           </Link>
+
+          {/* Links */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+            <div style={{ display: 'none', alignItems: 'center', gap: 20 }} className="desktop-nav">
+              <Link href="/app" style={{ fontSize: 13, color: '#d1d5db', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+                Dashboard
+              </Link>
+              <Link href="/app/cases" style={{ fontSize: 13, color: '#d1d5db', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+                Cases
+              </Link>
+              <Link href="/app/graph" style={{ fontSize: 13, color: '#d1d5db', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+                Graph Explorer
+              </Link>
+              <Link href="/app/audit" style={{ fontSize: 13, color: '#d1d5db', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s' }}>
+                Audit Trail
+              </Link>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '4px 10px',
+                borderRadius: 20,
+                background: 'rgba(16, 185, 129, 0.1)',
+                border: '1px solid rgba(16, 185, 129, 0.25)',
+                color: '#34d399',
+                fontSize: 11,
+                fontWeight: 600
+              }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', backgroundColor: '#10b981', display: 'inline-block' }} />
+                Core Active
+              </div>
+
+              <Link href="/app" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                padding: '8px 18px',
+                borderRadius: 9,
+                background: '#2563eb',
+                color: '#ffffff',
+                fontSize: 13,
+                fontWeight: 600,
+                textDecoration: 'none',
+                boxShadow: '0 0 16px rgba(37, 99, 235, 0.4)',
+                transition: 'all 0.2s'
+              }}>
+                Open Console <ChevronRight style={{ width: 14, height: 14 }} />
+              </Link>
+            </div>
+          </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-32 pb-24 px-6 text-center relative">
-        {/* Blue glow */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 rounded-full blur-3xl" />
+      {/* Hero Section */}
+      <section style={{
+        position: 'relative',
+        padding: '72px 24px 60px 24px',
+        maxWidth: 1040,
+        margin: '0 auto',
+        textAlign: 'center',
+        zIndex: 1
+      }}>
+        {/* Compliance pill */}
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          padding: '6px 14px',
+          borderRadius: 24,
+          background: 'rgba(59, 130, 246, 0.1)',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          color: '#60a5fa',
+          fontSize: 12,
+          fontWeight: 600,
+          marginBottom: 28,
+          boxShadow: '0 2px 12px rgba(37, 99, 235, 0.12)'
+        }}>
+          <Zap style={{ width: 14, height: 14, color: '#38bdf8' }} />
+          Autonomous AML Intelligence · FIU-IND STR Regulator Compliant
         </div>
-        <div className="relative max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-semibold mb-8 animate-fade-up">
-            <Zap className="w-3 h-3" />
-            India&apos;s first AI-native AML platform
+
+        {/* Hero Title */}
+        <h1 style={{
+          fontSize: 'clamp(2.5rem, 5.5vw, 4.6rem)',
+          fontWeight: 800,
+          letterSpacing: '-0.035em',
+          lineHeight: 1.08,
+          color: '#ffffff',
+          marginBottom: 22
+        }}>
+          Automated Suspicious Activity Reports,<br />
+          <span style={{
+            background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #38bdf8 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            Powered by Multi-Agent AI.
+          </span>
+        </h1>
+
+        {/* Hero Description */}
+        <p style={{
+          fontSize: 'clamp(1rem, 1.8vw, 1.18rem)',
+          color: '#9ca3af',
+          maxWidth: 720,
+          margin: '0 auto 36px auto',
+          lineHeight: 1.6
+        }}>
+          End-to-end regulatory compliance automation. XGBoost risk scoring with explainable SHAP features,
+          multi-hop graph traversal, automated narrative generation, and official filing PDFs.
+        </p>
+
+        {/* Action Buttons */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 14,
+          flexWrap: 'wrap',
+          marginBottom: 64
+        }}>
+          <Link href="/app" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            padding: '13px 28px',
+            borderRadius: 12,
+            background: 'linear-gradient(135deg, #2563eb, #1d4ed8)',
+            color: '#ffffff',
+            fontSize: 15,
+            fontWeight: 600,
+            textDecoration: 'none',
+            boxShadow: '0 4px 24px rgba(37, 99, 235, 0.45)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            transition: 'transform 0.15s, box-shadow 0.15s'
+          }}>
+            Open Analyst Dashboard
+            <ArrowRight style={{ width: 16, height: 16 }} />
+          </Link>
+
+          <Link href="/app/demo" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            padding: '13px 24px',
+            borderRadius: 12,
+            background: 'rgba(17, 24, 39, 0.9)',
+            border: '1px solid rgba(255, 255, 255, 0.14)',
+            color: '#f3f4f6',
+            fontSize: 15,
+            fontWeight: 500,
+            textDecoration: 'none',
+            transition: 'background 0.2s, border-color 0.2s'
+          }}>
+            <Play style={{ width: 14, height: 14, color: '#60a5fa' }} />
+            Scenario Simulator
+          </Link>
+        </div>
+
+        {/* Metrics Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: 14,
+          maxWidth: 920,
+          margin: '0 auto'
+        }}>
+          {[
+            { value: '6 AI Agents', label: 'Autonomous LangGraph Pipeline', color: '#60a5fa' },
+            { value: '8 AML Rules', label: 'PMLA 2002 & FinCEN Typologies', color: '#a78bfa' },
+            { value: '< 30 Seconds', label: 'Raw Ingestion to Regulatory PDF', color: '#34d399' },
+            { value: 'SHA-256', label: 'Cryptographically Immutable Audit', color: '#f59e0b' },
+          ].map((stat, i) => (
+            <div key={i} style={{
+              background: 'rgba(15, 23, 42, 0.65)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: 14,
+              padding: '20px 18px',
+              textAlign: 'center',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+            }}>
+              <div style={{ fontSize: 22, fontWeight: 700, color: stat.color, marginBottom: 4 }}>
+                {stat.value}
+              </div>
+              <div style={{ fontSize: 12, color: '#9ca3af' }}>
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Interactive System Pipeline Architecture */}
+      <section style={{
+        maxWidth: 1040,
+        margin: '0 auto',
+        padding: '20px 24px 72px 24px'
+      }}>
+        <div style={{
+          background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(3, 7, 18, 0.95) 100%)',
+          border: '1px solid rgba(59, 130, 246, 0.25)',
+          borderRadius: 20,
+          padding: '36px 32px',
+          boxShadow: '0 8px 36px rgba(0, 0, 0, 0.6)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28, flexWrap: 'wrap', gap: 12 }}>
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#60a5fa', marginBottom: 4 }}>
+                Pipeline Execution Engine
+              </div>
+              <h2 style={{ fontSize: 22, fontWeight: 700, color: '#ffffff' }}>
+                End-to-End Autonomous SAR Lifecycle
+              </h2>
+            </div>
+            <Link href="/app" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              color: '#60a5fa',
+              fontSize: 13,
+              fontWeight: 500,
+              textDecoration: 'none'
+            }}>
+              View Live Queue <ArrowRight style={{ width: 14, height: 14 }} />
+            </Link>
           </div>
-          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight mb-6 animate-fade-up-1 leading-none">
-            File better SARs,<br />
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">10× faster.</span>
-          </h1>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-10 animate-fade-up-2 leading-relaxed">
-            End-to-end Suspicious Activity Report automation. XGBoost risk scoring, Groq AI narrative generation, FIU-IND STR format, downloadable PDF — in one platform.
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+            gap: 12
+          }}>
+            {[
+              { num: '01', title: 'Ingestion', desc: 'Vector Parsing & Normalization', icon: Database, color: '#3b82f6' },
+              { num: '02', title: 'Risk Score', desc: 'XGBoost + SHAP Features', icon: BarChart2, color: '#8b5cf6' },
+              { num: '03', title: 'Narrative', desc: 'Structured AI Generation', icon: FileText, color: '#06b6d4' },
+              { num: '04', title: 'Compliance', desc: 'FinCEN / FIU Validation', icon: Shield, color: '#f59e0b' },
+              { num: '05', title: 'Audit Seal', desc: 'SHA-256 Immutable Hash', icon: Lock, color: '#10b981' },
+              { num: '06', title: 'Filing', desc: 'Official PDF Export', icon: CheckCircle, color: '#ef4444' },
+            ].map((step, idx) => (
+              <div key={idx} style={{
+                background: 'rgba(2, 6, 23, 0.85)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                borderRadius: 12,
+                padding: '16px 14px',
+                textAlign: 'left'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: step.color, fontFamily: 'monospace' }}>
+                    {step.num}
+                  </span>
+                  <step.icon style={{ width: 15, height: 15, color: step.color }} />
+                </div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#ffffff', marginBottom: 4 }}>
+                  {step.title}
+                </div>
+                <div style={{ fontSize: 11, color: '#6b7280', lineHeight: 1.35 }}>
+                  {step.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Capabilities */}
+      <section style={{
+        maxWidth: 1040,
+        margin: '0 auto',
+        padding: '0 24px 72px 24px'
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: 40 }}>
+          <h2 style={{ fontSize: 26, fontWeight: 700, color: '#ffffff', marginBottom: 8 }}>
+            Engineered for Bank Compliance Operations
+          </h2>
+          <p style={{ fontSize: 14, color: '#9ca3af', maxWidth: 560, margin: '0 auto' }}>
+            Production-grade AML intelligence with mathematical explainability, graph network detection, and verifiable audit records.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-up-3">
-            <Link href="/app/demo" className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3.5 rounded-xl text-base transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]">
-              <Zap className="w-4 h-4" />
-              Run Live Demo
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link href="/app" className="inline-flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 hover:bg-white/5 text-zinc-300 hover:text-white font-medium px-8 py-3.5 rounded-xl text-base transition-all">
-              View Dashboard
-            </Link>
-          </div>
         </div>
-      </section>
 
-      {/* Stats */}
-      <section className="px-6 pb-20">
-        <div className="max-w-3xl mx-auto grid grid-cols-3 gap-6">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 16
+        }}>
           {[
-            { n: '6', label: 'AI Agents' },
-            { n: '8', label: 'AML Rules' },
-            { n: '<30s', label: 'To SAR Report' },
-          ].map(({ n, label }) => (
-            <div key={label} className="text-center p-6 rounded-2xl bg-white/3 border border-white/5">
-              <div className="text-3xl font-bold text-white mb-1">{n}</div>
-              <div className="text-sm text-zinc-500">{label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="px-6 pb-24 max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl font-bold text-white mb-3">Built for compliance teams</h2>
-          <p className="text-zinc-400 max-w-xl mx-auto">Production-grade AML intelligence with explainable AI and regulatory-ready output.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            { icon: <BarChart2 className="w-5 h-5 text-blue-400" />, title: 'XGBoost Risk Scoring', desc: 'ML model trained on 6 AML typologies (structuring, layering, smurfing, etc.) with SHAP explainability for every prediction.', color: 'blue' },
-            { icon: <FileText className="w-5 h-5 text-purple-400" />, title: 'Groq AI Narrative', desc: 'Llama 3 generates a complete 8-part FIU-IND STR. BSA-compliant, structured, and downloadable as PDF.', color: 'purple' },
-            { icon: <Lock className="w-5 h-5 text-green-400" />, title: 'Immutable Audit Trail', desc: 'SHA256-hashed case record. 6-agent timeline with timestamps, confidence scores, and tamper detection.', color: 'green' },
-            { icon: <Shield className="w-5 h-5 text-amber-400" />, title: '8 AML Compliance Rules', desc: 'FinCEN 314(a), BSA threshold, structuring, geography, round numbers, dormant accounts — all automated.', color: 'amber' },
-          ].map(f => (
-            <div key={f.title} className="group p-6 rounded-2xl bg-zinc-950 border border-white/5 hover:border-white/10 hover:bg-zinc-900 transition-all duration-200 cursor-default">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 border border-white/5 ${
-                f.color === 'blue' ? 'bg-blue-500/10' : f.color === 'purple' ? 'bg-purple-500/10' : f.color === 'green' ? 'bg-green-500/10' : 'bg-amber-500/10'
-              }`}>
-                {f.icon}
+            {
+              icon: BarChart2,
+              title: 'XGBoost ML Risk Scoring',
+              desc: 'Trained on high-volume transaction datasets. Automatically yields confidence scores and SHAP feature weight attribution for each flagged anomaly.',
+              color: '#3b82f6'
+            },
+            {
+              icon: Network,
+              title: 'Neo4j Graph Traversal',
+              desc: '4-hop upstream and downstream fund flow analysis. Detects structuring, smurfing aggregations, and rapid cash-out layering networks.',
+              color: '#8b5cf6'
+            },
+            {
+              icon: FileText,
+              title: 'AI Narrative Generation',
+              desc: 'Generates complete 8-part FIU-IND STR reports with chronological event breakdowns, regulatory cross-references, and subject summaries.',
+              color: '#06b6d4'
+            },
+            {
+              icon: Lock,
+              title: 'Zero-Trust Audit Ledger',
+              desc: 'Every agent calculation, prompt, analyst review, and parameter modification is cryptographically hashed with SHA-256 for complete non-repudiation.',
+              color: '#10b981'
+            }
+          ].map((card, i) => (
+            <div key={i} style={{
+              background: 'rgba(15, 23, 42, 0.5)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: 16,
+              padding: 24,
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)'
+            }}>
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: 10,
+                background: `color-mix(in srgb, ${card.color} 15%, transparent)`,
+                border: `1px solid color-mix(in srgb, ${card.color} 30%, transparent)`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: 16
+              }}>
+                <card.icon style={{ width: 20, height: 20, color: card.color }} />
               </div>
-              <h3 className="font-semibold text-white mb-2 text-base">{f.title}</h3>
-              <p className="text-sm text-zinc-500 leading-relaxed">{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Demo CTA */}
-      <section className="px-6 pb-24 max-w-6xl mx-auto">
-        <div className="rounded-2xl bg-gradient-to-br from-zinc-950 to-zinc-900 border border-white/8 p-10 md:p-14">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            <div className="flex-1">
-              <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Judge Demo Center</div>
-              <h2 className="text-3xl font-bold text-white mb-4">3 real AML scenarios,<br/>ready in one click.</h2>
-              <p className="text-zinc-400 text-sm mb-7 leading-relaxed max-w-lg">
-                Each demo runs the full pipeline in seconds — risk scoring, Groq AI narrative, compliance checks, and a downloadable PDF report.
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: '#ffffff', marginBottom: 8 }}>
+                {card.title}
+              </h3>
+              <p style={{ fontSize: 13, color: '#9ca3af', lineHeight: 1.55 }}>
+                {card.desc}
               </p>
-              <div className="space-y-2.5 mb-8">
-                {['XGBoost risk score with SHAP explanation', 'Auto-generated FIU-IND STR (8 parts)', 'One-click PDF download', 'Immutable SHA256 audit hash'].map(item => (
-                  <div key={item} className="flex items-center gap-2.5 text-sm text-zinc-300">
-                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <Link href="/app/demo" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition-all">
-                <Zap className="w-4 h-4" />
-                Open Demo Center
-                <ArrowRight className="w-4 h-4" />
-              </Link>
             </div>
-            <div className="flex-1 space-y-3 w-full">
-              {[
-                { tag: 'Structuring', color: 'red' as const, desc: 'ACC-9812 splits $49,000 into 5 transfers of $9,800 — all below the BSA $10k threshold.' },
-                { tag: 'Layering', color: 'blue' as const, desc: '$180,000 through Cayman Islands + Panama via crypto merchant.' },
-                { tag: 'Smurfing', color: 'amber' as const, desc: '8 accounts depositing round amounts ($2k–$5k) to a central account on the same day.' },
-              ].map(s => (
-                <Link key={s.tag} href="/app/demo" className="flex items-center gap-4 p-4 rounded-xl bg-black border border-white/5 hover:border-white/10 hover:bg-zinc-950 transition-all group">
-                  <span className={`text-xs font-bold px-2.5 py-1 rounded-full border flex-shrink-0 ${
-                    s.color === 'red' ? 'text-red-400 bg-red-400/8 border-red-400/20' :
-                    s.color === 'blue' ? 'text-purple-400 bg-purple-400/8 border-purple-400/20' :
-                    'text-amber-400 bg-amber-400/8 border-amber-400/20'
-                  }`}>{s.tag}</span>
-                  <p className="text-sm text-zinc-400 flex-1">{s.desc}</p>
-                  <ArrowRight className="w-4 h-4 text-zinc-700 group-hover:text-white transition-colors flex-shrink-0" />
-                </Link>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Report Generation Workflow */}
-      <section className="px-6 pb-24 max-w-5xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl font-bold text-white mb-3">Automated SAR Generation Workflow</h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">From raw transaction to a regulatory-ready PDF report in under 30 seconds.</p>
-        </div>
-        
-        <div className="relative border-l border-white/10 ml-4 md:ml-10 space-y-8">
-          {[
-            { tag: '01', title: 'Data Ingestion & Normalization', desc: 'Raw banking vectors are synthesized into a standard JSON schema. Identifies sender, receiver, amounts, and flags offshore routing.', icon: <Zap className="w-5 h-5 text-blue-400" /> },
-            { tag: '02', title: 'XGBoost Risk Scoring', desc: 'Machine learning model evaluates the transaction against 6 AML typologies (Structuring, Layering, etc.) and outputs a risk score with SHAP feature importance.', icon: <BarChart2 className="w-5 h-5 text-purple-400" /> },
-            { tag: '03', title: 'Groq AI Narrative Generation', desc: 'Llama 3 processes the transaction facts and risk signals to author a comprehensive, human-readable 8-part FIU-IND Suspicious Transaction Report.', icon: <FileText className="w-5 h-5 text-cyan-400" /> },
-            { tag: '04', title: 'AML Compliance Check', desc: 'Rule-based engine verifies the generated narrative against strict FinCEN/BSA guidelines, ensuring no mandatory fields are missing.', icon: <Shield className="w-5 h-5 text-amber-400" /> },
-            { tag: '05', title: 'Immutable Audit Hashing', desc: 'The entire case state, including ML models and AI outputs, is cryptographically hashed (SHA256) to ensure tamper-proof regulatory compliance.', icon: <Lock className="w-5 h-5 text-green-400" /> },
-            { tag: '06', title: 'Analyst Review & PDF Download', desc: 'Compliance officer reviews the fully assembled case, approves the SAR, and exports a text-based, formatted PDF document.', icon: <CheckCircle className="w-5 h-5 text-red-400" /> },
-          ].map((s) => (
-            <div key={s.tag} className="relative pl-10 md:pl-16">
-              <div className="absolute -left-6 top-1 w-12 h-12 bg-black border border-white/10 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                {s.icon}
-              </div>
-              <div className="bg-zinc-950 border border-white/5 p-6 rounded-2xl hover:border-white/10 transition-colors">
-                <div className="text-xs font-mono font-semibold text-zinc-500 mb-2">STEP {s.tag}</div>
-                <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
-                <p className="text-zinc-400 leading-relaxed text-sm">{s.desc}</p>
-              </div>
-            </div>
-          ))}
+      {/* Bottom CTA */}
+      <section style={{
+        maxWidth: 1040,
+        margin: '0 auto',
+        padding: '0 24px 80px 24px'
+      }}>
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(17, 24, 39, 0.8) 100%)',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          borderRadius: 20,
+          padding: '40px 32px',
+          textAlign: 'center',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)'
+        }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#ffffff', marginBottom: 10 }}>
+            Ready to explore active cases?
+          </h2>
+          <p style={{ fontSize: 14, color: '#9ca3af', marginBottom: 24, maxWidth: 540, margin: '0 auto 24px auto' }}>
+            Access the compliance dashboard, examine transaction graphs, run simulation scenarios, and generate regulatory PDFs.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
+            <Link href="/app" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '12px 26px',
+              borderRadius: 10,
+              background: '#2563eb',
+              color: '#ffffff',
+              fontSize: 14,
+              fontWeight: 600,
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(37, 99, 235, 0.4)'
+            }}>
+              Launch Platform Dashboard <ArrowRight style={{ width: 16, height: 16 }} />
+            </Link>
+            <Link href="/app/cases" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              padding: '12px 22px',
+              borderRadius: 10,
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              color: '#e5e7eb',
+              fontSize: 14,
+              fontWeight: 500,
+              textDecoration: 'none'
+            }}>
+              View All Cases
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 px-6 py-8 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Shield className="w-4 h-4 text-zinc-700" />
-          <span className="text-sm font-medium text-zinc-700">SAR Platform</span>
+      <footer style={{
+        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+        padding: '24px',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: 1040, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Shield style={{ width: 16, height: 16, color: '#3b82f6' }} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#ffffff' }}>SAR Platform</span>
+            <span style={{ fontSize: 12, color: '#6b7280' }}>· FIU-IND / PMLA Compliant</span>
+          </div>
+          <div style={{ fontSize: 12, color: '#6b7280' }}>
+            XGBoost ML · Neo4j Graph DB · LangGraph Multi-Agent Engine
+          </div>
         </div>
-        <p className="text-xs text-zinc-800">FIU-IND STR Compliant · XGBoost + Groq AI · Built for Indian Banks</p>
       </footer>
     </div>
   );

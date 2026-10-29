@@ -22,7 +22,7 @@ export default function CasesPage() {
   const filtered = cases.filter(c => {
     const q = search.toLowerCase();
     return (c.case_id.toLowerCase().includes(q) || c.subject.toLowerCase().includes(q))
-      && (tier === 'all' || c.risk_tier === tier);
+      && (tier === 'all' || c.risk_tier === tier || (tier === 'pending' && (c.status === 'pending' || c.risk_tier === 'pending')));
   });
 
   return (
@@ -84,7 +84,7 @@ export default function CasesPage() {
               ))
             ) : filtered.length === 0 ? (
               <tr><td colSpan={6} style={{ textAlign: 'center', padding: '60px 16px', color: 'var(--text-faint)', fontSize: 13 }}>
-                {cases.length === 0 ? 'No cases yet — run a demo scenario first' : 'No matches'}
+                {cases.length === 0 ? 'No cases loaded — execute a scenario simulation or refresh feed' : 'No matches'}
               </td></tr>
             ) : filtered.map((c, i) => (
               <tr key={c.case_id} className="row-hover" style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
@@ -92,7 +92,7 @@ export default function CasesPage() {
                 <td className="td" style={{ maxWidth: 130 }}><span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: 12, color: 'var(--text-secondary)' }}>{c.subject}</span></td>
                 <td className="td"><RiskBadge tier={c.risk_tier} size="sm" /></td>
                 <td className="td"><StatusBadge status={c.status} /></td>
-                <td className="td" style={{ color: 'var(--text-faint)', fontSize: 11 }}>
+                <td suppressHydrationWarning className="td" style={{ color: 'var(--text-faint)', fontSize: 11 }}>
                   {c.last_updated !== 'Unknown' ? new Date(c.last_updated).toLocaleDateString() : '—'}
                 </td>
                 <td className="td">

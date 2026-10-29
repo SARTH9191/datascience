@@ -88,10 +88,10 @@ export default function Dashboard() {
           <div style={{ width: 48, height: 48, borderRadius: 12, background: 'var(--brand-dim)', border: '1px solid var(--brand-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
             <Zap style={{ width: 20, height: 20, color: 'var(--brand)' }} />
           </div>
-          <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Start with a demo case</h2>
-          <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 20 }}>Run the 3 pre-loaded AML scenarios to see the full pipeline in action.</p>
+          <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Initialize Typology Simulation</h2>
+          <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 20 }}>Execute standard AML typology scenarios to process and evaluate end-to-end pipeline cases.</p>
           <Link href="/app/demo" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--brand)', color: '#fff', padding: '10px 20px', borderRadius: 10, fontSize: 13, fontWeight: 500, textDecoration: 'none' }}>
-            <Play style={{ width: 14, height: 14 }} /> Run Demo Cases
+            <Play style={{ width: 14, height: 14 }} /> Launch Scenario Simulator
           </Link>
         </div>
       )}
@@ -143,7 +143,7 @@ export default function Dashboard() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
                 <RiskBadge tier={c.risk_tier} size="sm" />
                 <StatusBadge status={c.status} />
-                <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, color: 'var(--text-faint)' }}>
+                <span suppressHydrationWarning style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 10, color: 'var(--text-faint)' }}>
                   <Clock style={{ width: 11, height: 11 }} />
                   {c.last_updated !== 'Unknown' ? new Date(c.last_updated).toLocaleTimeString() : '—'}
                 </span>

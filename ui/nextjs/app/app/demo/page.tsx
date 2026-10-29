@@ -14,7 +14,7 @@ const SCENARIOS = [
     amount: '$49,000',
     desc: 'ACC-9812 splits $49,000 into 5 transfers of $9,800 each in 24 hours — just below the BSA $10k CTR threshold.',
     facts: ['5 transactions in 24 hours', '$9,800 each (below $10k)', 'Offshore geography', 'High-risk merchant'],
-    note: 'Judges: SHAP chart with amount_usd as top feature, BSA threshold flag, auto-generated FIU-IND narrative.',
+    note: 'System Diagnostics: SHAP feature ranking with amount_usd as primary driver, CTR threshold breach, automated FIU-IND narrative.',
   },
   {
     id: 'layering' as const,
@@ -24,7 +24,7 @@ const SCENARIOS = [
     amount: '$180,000',
     desc: 'Transfers through 4 jurisdictions — Cayman + Panama — via crypto merchant with a dormant reactivated account.',
     facts: ['4 cross-border jurisdictions', 'Cayman + Panama routing', 'Crypto merchant', 'Dormant account reactivated'],
-    note: 'Judges: Multi-jurisdiction flag, geography risk signal, immutable audit hash.',
+    note: 'System Diagnostics: Multi-jurisdiction cross-border routing detected, high-risk merchant flag, immutable SHA-256 audit hash.',
   },
   {
     id: 'smurfing' as const,
@@ -34,7 +34,7 @@ const SCENARIOS = [
     amount: '$28,000',
     desc: '8 connected accounts deposit round-number amounts ($2k–$5k) to a central account on the same day.',
     facts: ['8 connected accounts', 'Round-number deposits', 'Same-day coordination', 'transaction_frequency top SHAP feature'],
-    note: 'Judges: round-number flag, network pattern, multiple compliance issues.',
+    note: 'System Diagnostics: Round-number deposit clustering, multi-account fan-in pattern, transaction frequency velocity breach.',
   },
 ];
 
@@ -79,11 +79,11 @@ export default function DemoPage() {
       {/* Header */}
       <div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '3px 12px', borderRadius: 999, background: 'var(--purple-dim)', border: '1px solid var(--purple-border)', color: 'var(--purple)', fontSize: 11, fontWeight: 700, marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-          Judge Demo Mode
+          AML Typology Testing
         </div>
-        <h1 style={{ fontSize: 24, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 6 }}>Demo Center</h1>
-        <p style={{ fontSize: 13, color: 'var(--text-muted)', maxWidth: 500 }}>
-          3 pre-loaded AML scenarios. Each runs the full pipeline — XGBoost scoring, Groq AI narrative, PDF report — in under 30 seconds.
+        <h1 style={{ fontSize: 24, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 6 }}>Scenario Simulator</h1>
+        <p style={{ fontSize: 13, color: 'var(--text-muted)', maxWidth: 550 }}>
+          High-fidelity AML typology simulations. Each scenario triggers the production 6-agent pipeline — XGBoost ML risk scoring, Groq AI narrative generation, and regulator-ready PDF report generation.
         </p>
       </div>
 
@@ -203,20 +203,20 @@ export default function DemoPage() {
         );
       })}
 
-      {/* Judge guide */}
+      {/* Regulatory Workflow Guide */}
       <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: 24, boxShadow: 'var(--shadow-card)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
           <Shield style={{ width: 15, height: 15, color: 'var(--text-muted)' }} />
-          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>Judge Demo Script (6 steps)</span>
+          <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--text-primary)' }}>Standard Regulatory Workflow (6 Steps)</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {[
-            ['Run All 3 Scenarios', 'Click the button above — all 3 cases run in ~30 seconds.'],
-            ['Open Operation Threshold', '"View Full Report" → Risk Analysis tab → SHAP chart shows amount_usd as top driver.'],
-            ['View SAR Report', 'SAR Report tab → 8-part FIU-IND form auto-filled by Groq llama3.'],
-            ['Download PDF', '"Download PDF" → regulatory-ready PDF downloads instantly.'],
-            ['Check Audit Trail', 'Audit Trail tab → SHA256 immutable hash + agent timeline.'],
-            ['Approve & File', 'Type analyst name → "Approve & File" → status changes to FILED.'],
+            ['Execute Typology Scenarios', 'Click "Run All 3 Scenarios" to process all transaction clusters through the pipeline.'],
+            ['Open Anomaly Report', 'Select a case → Risk Analysis tab → SHAP chart details primary feature weights.'],
+            ['Review Generated SAR Report', 'SAR Report tab → 8-part FIU-IND form auto-assembled and structured by AI narrative agent.'],
+            ['Export Regulator PDF', 'Click "Download PDF" → Official regulator-ready filing PDF generated and downloaded.'],
+            ['Verify Audit Trail', 'Audit Trail tab → Immutable SHA-256 cryptographically sealed log and agent timeline.'],
+            ['Approve & File', 'Enter analyst signature → "Approve & File" → Case transition committed to immutable ledger.'],
           ].map(([title, desc], n) => (
             <div key={n} style={{ display: 'flex', gap: 14 }}>
               <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--brand-dim)', border: '1px solid var(--brand-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: 'var(--blue-light)', flexShrink: 0, marginTop: 2 }}>{n + 1}</div>

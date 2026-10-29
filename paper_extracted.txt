@@ -1,0 +1,727 @@
+AI-Based SAR Narrative Generation System Using LLM and Retrieval-Augmented Generation 
+
+Bhagwan Thorat
+
+Department of Artificial Intelligence and Data Science (AI&DS) Vishwakarma Institute of Technology Pune, India
+
+bhagwan.thorat@vit.edu
+
+Aditya Jain
+
+Department of Artificial Intelligence and Data Science (AI&DS) Vishwakarma Institute of Technology Pune, India aditya.jain24@vit.edu
+
+Aarya Jagdale
+
+Department of Artificial Intelligence and Data Science (AI&DS) Vishwakarma Institute of Technology Pune, India kiran.aarya24@vit.edu
+
+Khushi Agrawal
+
+Department of Artificial Intelligence and Data Science (AI&DS) Vishwakarma Institute of Technology Pune, India agrawal.khushi24@vit.edu
+
+Sujal Adsul
+
+Department of Artificial Intelligence and Data Science (AI&DS) Vishwakarma Institute of Technology Pune, India sujal.adsul24@vit.edu
+
+Anshul Patidar
+
+Department of Artificial Intelligence and Data Science (AI&DS) Vishwakarma Institute of Technology Pune, India patidar.anshul24@vit.edu
+
+ Abstract— Financial Institutions must report Suspicious Activity Reports (SARs) where any kind of suspicious activities that involve frauds or money laundering are noticed. However, the conventional method of drafting a SAR is highly manual and relies on compliance analysts. As a result, it becomes time-consuming and creates several operational and reporting challenges for the financial institutions. Moreover, with the increase in the volume of online banking transactions, there is a dire need to adopt intelligent and explainable automated solutions for Anti-Money Laundering (AML) purposes. This paper presents the idea of an Explainable AI-based SAR Narrative Generator that incorporates the use of RAG technology along with the audit trail approach for generating automated SAR reports. The proposed solution takes transaction alert data, KYC profile information of customers, and transaction history as the inputs. It utilizes a rule-based risk detection engine to detect suspicious transaction patterns including multiple deposits, fast fund movements, and international transactions. The relevant AML typologies, SAR templates, and regulatory guidance documents are identified via RAG pipeline based on the vector embeddings and ChromaDB. A Large Language Model (LLM) generates the regulator-ready SAR narratives using contextual and structured evidences. To ensure transparency in the process, the complete audit trail consisting of rules applied, knowledge sources utilized, transaction evidence, prompts, and generated SAR is maintained by the proposed solution. There is also a human-in-the-loop mechanism in the proposed solution for editing and approving SAR narrative drafts.
+
+Keywords— Suspicious Activity Report, Anti-Money Laundering, Explainable AI, Retrieval-Augmented Generation, Large Language Model, Audit Trail, Financial Compliance, Financial Crime Detection.
+
+Introduction
+
+The growth of digital banking, payment systems, and cross-border financial transactions has made it increasingly complex to monitor financial activity. Banks process large volumes of transactions every day, making it challenging for AML compliance teams to detect suspicious activity [1], [2]. Regulatory authorities require banks to submit Suspicious Activity Reports (SARs) when abnormal transactions are identified. A SAR details the suspicious activity or behaviour of the customer, the transaction details, the evidence of the suspicious activity, and the rationale for identifying it as suspicious. Preparing SARs is a manual and time-consuming process. Analysts must review the transaction histories, customer profiles, activities, and risk factors before preparing a report. This increases the workload for the analysts, causes delays in reporting, and increases the possibility of inconsistent or incomplete reporting.
+
+Artificial Intelligence, NLP, and LLMs present opportunities to automate financial compliance tasks and generate SAR narratives[6], [8], [9]. However, AI-based compliance systems have challenges such as hallucinations, lack of explainability, audit trails, and limited trust[3], [5], [8]. This paper proposes an Explainable AI-based SAR Narrative Generator that combines rule-based suspicious activity detection, Retrieval-Augmented Generation, and audit trail capabilities. The system processes transaction alerts, KYC profiles, and account activity to identify suspicious activities such as multiple deposits from unrelated accounts, rapid fund transfers, and international transactions [1], [2].
+
+The system uses a Retrieval-Augmented Generation pipeline to retrieve relevant AML typologies, SAR templates, and regulatory guidance using vector embeddings and ChromaDB databases before generating the narrative using an LLM [5]. An audit trail records activated rules, evidence transactions, retrieved documents, system prompts, and outputs. The system operates Human-in-the-Loop functionality which enables compliance analysts to check and authorize the system-generated narratives. The system uses retrieval-based grounding together with explainability and human monitoring to decrease manual work while producing uniform SAR reports [4], [5], [10]. The system operates as a scalable solution which offers complete transparency to financial institutions for their AML regulatory compliance and financial crime reporting needs.
+
+Literature review
+
+    Due to the rapid growth of digital banking transactions, increasing financial fraud, and stricter regulations for financial compliance, there has been significant research into smart financial compliance and Anti-Money Laundering (AML) systems. This section reviews the research in six areas related to financial compliance and AML: AML transaction monitoring systems, explainable AI systems, Retrieval-Augmented Generation (RAG) systems, Large Language Models in financial applications, NLP-based financial compliance systems, and human-in-the-loop AI systems.
+
+A. Anti-Money Laundering and Financial Fraud Detection Systems.
+
+Traditional AML systems use rule-based transaction monitoring to detect suspicious transactions. Studies have shown that machine learning, behavioural analytics, and customer profiling can enhance the detection of financial fraud and money laundering[1], [2]. These findings support the proposed system’s rule-based risk detection engine, which analyses customer behaviour and transaction patterns to identify suspicious activities.
+
+B. Explainable Artificial Intelligence in Financial Systems
+
+    Due to the regulations in financial systems, explainability is required for AI-based financial systems.[3] demonstrated that using Explainable AI (XAI) in financial risk management systems improves the transparency of those systems. [4] reviewed the explanation techniques for black-box AI models and introduced the need for interpretable reasoning in systems that operate within high-risk domains such as banking and financial compliance. These studies highlight the limitations of black-box AI systems in financial and compliance applications. The proposed financial compliance system utilizes these studies to justify the implementation of a feature that maintains the system’s audit trail, including the rules triggered, AML typologies retrieved, evidence transactions, and reasoning logs of the system.
+
+C. Retrieval-Augmented Generation (RAG) for Knowledge Grounded AI 
+
+RAG combines document retrieval with LLMs to improve factual accuracy and reduce hallucinations by providing domain-specific information[5]. The system retrieves relevant information from a vector database which includes AML typologies and SAR templates and regulatory guidance before it produces its reports. The system generates stories through official financial crime terminology which it obtains from regulatory documents instead of depending on the LLM's internal knowledge base.
+
+D. Large Language Models in Financial Applications
+
+The transformer-based Large Language Models were proven to create text that understands context by Brown et al. [6] in their few-shot learning capacity. [7] Introduced the transformer architecture, the foundation of current natural language generation (NLG) task-oriented LLMs. [8] explained how Large Language Models function in financial operations while showing their useful applications for regulatory reporting and compliance automation and financial report generation. The authors raised questions on hallucination and explainability and issues on Domain Adaptation. The system solves these problems by combining RAG-based contextual search with audit tracking for narrative creation and it uses particular prompts to guide LLM responses toward compliance work.
+
+E. NLP-Based Compliance Monitoring Systems
+
+Tasks like financial compliance and document creation are becoming more popular for the use of Natural Language Processing. The BERT model developed [9] brought major improvements to contextual language processing which led to the development of multiple NLP systems dedicated to compliance work. The newest methods of compliance monitoring involve NLP technology for developing summary statement reports on deal activity and additionally discovering the descriptions of suspicious behavior, and after that turning them into structured statement reports. The study confirms that the use of context-dependent knowledge and language generation techniques lowers the effort needed for compliance activities and improves the consistency of the generated files. The proposed system is based on these concepts, where the automated generation of Suspicious Activity Report (SAR) narratives creates a document that fulfills regulatory requirements by analyzing transaction records and customer KYC data and results from the AML typology database.
+
+F. Human-in-the-Loop and AI-Assisted Compliance Systems
+
+In high-risk environments such as financial services, human oversight remains essential. Vassallo et al. [10] proposed a Human-in-the-Loop machine learning approach for financial services and found that having analysts review the system significantly improved the trust and quality of decisions made by the AI-assisted system. The study presents a system which contains a human analyst review system that enables compliance officers to check and approve the SAR narrative content before submitting it. 
+
+G. Research Gap
+
+Research has explored different elements of AML transaction monitoring and explainable AI and RAG-based retrieval systems and Large Language Models but only a few studies have developed a unified system which generates SAR narratives. The current systems focus on specific areas which include detecting suspicious transactions but they fail to produce corresponding narrative reports. The system produces text through AI technology but it does not provide any information about its decision-making process. The system performs financial fraud classification but it lacks any form of auditor verification system. The system summarizes texts through NLP technology but it fails to meet the necessary requirements which regulatory authorities have established. The existing research fails to bring together the following elements which include rule-based AML transaction monitoring and retrieval augmented generation and explainable AI and audit trail logging and human analyst approval and regulator-ready SAR narrative generation. The system proposed in this study aims to fill this gap by developing an Explainable AI powered SAR Narrative Generator. The system produces Suspicious Activity Reports which contain basic information and clear format that meets regulatory standards through its automated process which analyzes transaction records and KYC data and AML patterns with Large Language Model support.
+
+Methodology
+
+A. System Overview
+
+The proposed system functions as an Explainable Artificial Intelligence (XAI) tool which generates Suspicious Activity Report (SAR) narratives to help organizations fulfill their Anti-Money Laundering (AML) compliance requirements. The system generates SAR narratives which regulators can use because it links rule-based risk detection with RAG and LLMs and audit trail systems to produce understandable results.  
+
+The system receives three types of data which include transaction alerts together with customer KYC profiles and their complete account activity records. Suspicious transaction patterns are identified using predefined AML rules. The system extracts relevant AML typologies together with regulatory guidance through a RAG pipeline before the Large Language Model produces the final SAR narrative.
+
+B. System Architecture
+
+The proposed architecture consists of six major modules:
+
+Data Ingestion Layer
+
+Data Preprocessing Layer
+
+Risk Detection Engine
+
+RAG Knowledge Engine
+
+LLM-Based SAR Generator
+
+Audit Trail and Human Review Module
+
+System modules and functions:
+
+Module
+
+Function
+
+Data Ingestion
+
+Collects transaction and KYC data
+
+Preprocessing
+
+Cleans and validates data
+
+Risk-Detection Engine
+
+Detects suspicious transaction patterns
+
+RAG Engine
+
+Retrieves AML typologies and SAR templates
+
+LLM Generator
+
+Generates SAR narrative
+
+Audit Module
+
+Stores reasoning logs and evidence
+
+Human-Review Layer
+
+Allows analyst approval and editing
+
+Fig. 1. End-to-end system architecture of the AI-Based SAR Narrative Generation System.
+
+The end-to-end architecture and module interaction of the proposed SAR Narrative Generation System are illustrated in Fig. 1.
+
+C. Data Collection and Input Datasets
+
+1) Transaction Dataset
+
+The transaction dataset contains customer transaction information required for suspicious activity analysis.
+
+Transaction dataset attributes
+
+Attribute
+
+Description
+
+txn_id
+
+Unique transaction ID
+
+cust_id
+
+Customer ID
+
+amount
+
+Transaction amount
+
+sender
+
+Sender account
+
+receiver
+
+Receiver account
+
+country
+
+Destination country
+
+transfer_type
+
+Deposit / Transfer
+
+timestamp
+
+Transaction time
+
+2) KYC Dataset
+
+The KYC dataset provides contextual customer information.
+
+Kyc dataset attributes
+
+Attribute
+
+Description
+
+cust_id
+
+Customer ID
+
+name
+
+Customer name
+
+occupation
+
+Customer occupation
+
+annual_income
+
+Declared annual income
+
+risk_level
+
+Risk category
+
+country
+
+Customer country
+
+The transaction dataset is mapped to customer profiles using the customer identifier (cust_id).
+
+D. Data Preprocessing
+
+The preprocessing module performs:
+
+Missing value handling
+
+Duplicate removal
+
+Transaction grouping
+
+Date-time normalization
+
+Customer-wise aggregation
+
+Customer transaction grouping is represented as:
+
+where:
+
+= Transaction set for customer 
+
+= Individual transaction
+
+The total transaction amount for a customer is computed as:
+
+where:
+
+= Amount of transaction 
+
+E. Rule-Based Risk Detection Engine
+
+The Risk Detection Engine identifies suspicious financial patterns using predefined AML rules.
+
+The system detects:
+
+Multiple deposits
+
+Structuring
+
+Rapid fund movement
+
+International transfers
+
+Income mismatch
+
+Layering activity
+
+A transaction is marked suspicious if:
+
+where:
+
+indicates suspicious activity.
+
+The suspicious score is calculated using weighted indicators:
+
+where:
+
+= Weight of suspicious indicator
+
+= Binary suspicious signal.
+
+Example suspicious indicators include:
+
+Indicator
+
+Description
+
+Multiple Senders
+
+Deposits from unrelated accounts
+
+Rapid Transfer
+
+Immediate outbound transfer
+
+International Transfer
+
+Foreign transfer detected
+
+Income Mismatch
+
+Transaction exceeds expected profile
+
+F. Retrieval-Augmented Generation (RAG) Engine
+
+The RAG module retrieves AML typologies and regulatory guidance before SAR generation.
+
+Documents stored in the vector database include:
+
+AML typologies
+
+SAR templates
+
+Regulatory guidelines
+
+Compliance procedures
+
+Each document is converted into vector embeddings using Sentence Transformers.
+
+The embedding function is represented as:
+
+where:
+
+= Document text
+
+= Vector embedding
+
+Similarity between the query and stored documents is computed using cosine similarity:
+
+where:
+
+= Query embedding
+
+= Document embedding
+
+The top-k relevant documents are retrieved and injected into the LLM prompt.
+
+Fig. 2. The RAG and Vector Retrieval Engine system shows its operational process through its document indexing procedures and cosine similarity search operations and its ability to build structured prompts.
+
+The RAG and Vector Retrieval Engine system shows its operational process through its document indexing procedures and cosine similarity search operations and its ability to build structured prompts. 
+
+G. Large Language Model-Based SAR Generation
+
+The Large Language Model generates SAR narratives using:
+
+Customer KYC profile
+
+Transaction summaries
+
+Suspicious indicators
+
+Retrieved AML typologies
+
+Regulatory templates
+
+The prompt structure is defined as:
+
+where:
+
+P = Final LLM prompt
+
+The generated SAR narrative contains:
+
+Customer background
+
+Transaction analysis
+
+Suspicious activity explanation
+
+AML typology references
+
+Compliance conclusion
+
+The generated output is represented as:
+
+where:
+
+= Large Language Model
+
+= Prompt input
+
+H. Audit Trail and Explainability Module
+
+To ensure the system remains transparent, all the reasoning steps performed by the system are stored. 
+
+The audit trail for the system includes details such as: 
+
+The AML rules that were triggered
+
+The evidence transactions that were flagged 
+
+The documents that were retrieved by the system     
+
+Similarity
+
+The audit structure is represented as:
+
+This improves explainability and regulatory trust.
+
+I. Human-in-the-Loop Review Module
+
+The system requires analysts to perform their work before submitting the final SAR document. 
+
+The analyst can carry out these specific tasks which he or she is able to perform: 
+
+The system enables users to edit the automatically generated narrative content which the system produces. 
+
+The analyst maintains control over the verification process because he can examine every suspicious indicator which appears during the process. 
+
+The analyst must decide to approve or reject the reports which become subject to their decision-making process. 
+
+Users have the ability to share additional comments which they want to distribute to other users. 
+
+The system combines AI automated systems with human operator involvement to develop this hybrid solution.
+
+J. Technologies Used
+
+Component
+
+Technology
+
+Frontend
+
+Streamlit
+
+Backend
+
+Python
+
+Vector Database
+
+ChromaDB
+
+RAG Framework
+
+LangChain
+
+Embeddings
+
+Sentence Transformers
+
+LLM Framework
+
+Hugging Face Transformers
+
+Data Processing
+
+Pandas
+
+ML Library
+
+Scikit-learn
+
+K. Workflow of Proposed System
+
+The complete workflow is summarized below:
+
+Post transaction and KYC data sets
+
+Prepare customer transaction information (data preprocessing)
+
+Identify unusual behaviour trends
+
+Generate suspicious indicators
+
+Retrieve AML typologies from RAG
+
+Construct structured LLM prompt
+
+Generate SAR narrative
+
+Store audit logs
+
+Allow analyst review and approval
+
+Export final SAR report
+
+L. Advantages of Proposed System
+
+The proposed methodology provides:
+
+Reduced manual SAR drafting effort
+
+Improved reporting consistency
+
+Explainable AI outputs
+
+Reduced hallucination using RAG
+
+Complete auditability
+
+Human analyst oversight
+
+Scalable AML compliance automation
+
+ Results and Discussions
+
+A. Experimental Evaluation
+
+The planned SAR Narrative Generator was tested with synthetic dataset of banking transactions with simulated customer KYC profile, transaction history, and fake AML transactions. Group the assignment to three key areas were the evaluation was carried out:
+
+Suspicious activity detection 
+
+Context-aware SAR narrative generation 
+
+Explainability and auditability 
+
+The system operates through customer transaction data processing which enables it to identify unusual transactions while displaying AML typologies through RAG pipeline and creating SAR reports that meet regulatory standards.
+
+Fig. 3. SAR Platform dashboard showing overall case statistics, the six-stage SAR processing pipeline, and recent suspicious activity cases.
+
+B. Risk Detection Results
+
+The Rule Based Risk Detection Engine successfully identified suspicious transactions through its risk detection system which performed well. 
+
+Multiple deposits from unrelated accounts 
+
+Rapid outbound fund transfers 
+
+International fund movement 
+
+KYC-income mismatches 
+
+Overall System Suspicious Activity Detection (SAD) accuracy was:
+
+The recognition rate of the whole system was:
+
+Risk Detection Performance
+
+Suspicious Activity
+
+Accuracy
+
+Multiple Deposits
+
+94.2%
+
+Rapid Transfers
+
+91.8%
+
+International Transfers
+
+96.1%
+
+Income Mismatch
+
+89.5%
+
+Overall Accuracy
+
+92.9%
+
+The research findings prove that the new rule-based engine functions as a successful system for identifying common AML patterns which generate suspicious financial operations. 
+
+Fig. 4. Risk analysis interface showing the risk score, detected AML typology, SHAP-based feature importance, and identified risk signals.
+
+C. RAG Retrieval Performance
+
+Evaluated the Retrieval-Augmented Generation (RAG) module for three capabilities: retrieval relevance and contextual grounding.
+
+The system was able to retrieve AML typologies and regulatory guidance based on cosine similarity:
+
+where:
+
+= Query embedding 
+
+= Document embedding 
+
+The retrieved documents helped improve the contextual relevance and minimize the hallucinated outputs generated during SAR creation.
+
+Rag Retrieval Results:
+
+Metric
+
+Result
+
+Top-1 Retrieval Accuracy
+
+88.4%
+
+Top-3 Retrieval Accuracy
+
+94.7%
+
+Average Similarity Score
+
+0.87
+
+Average Retrieval Time
+
+1.3 sec
+
+This represents a high retrieval accuracy and indicates the vector database was able to identify relevant AML typologies and SAR templates for cases of suspicion, as it should.
+
+D. SAR Narrative Generation Results
+
+The Large Language Model (LLM) used suspicious indicators, Know Your Customer (KYC) information, transaction summaries and retrieved AML guidance to generate SAR narratives.
+
+The narratives created were assessed for their qualitative examination with the following:
+
+Narrative consistency 
+
+Context relevance 
+
+Readability 
+
+Typology grounding 
+
+Sar Generation Evaluation
+
+Evaluation Parameter
+
+Score
+
+Narrative Consistency
+
+93.1%
+
+Context Accuracy
+
+92.4%
+
+Typology Relevance
+
+91.6%
+
+Readability
+
+94.2%
+
+Hallucination Reduction
+
+89.8%
+
+Fig. 5. Generated SAR report interface presenting customer information, transaction details, suspicious activity classification, and the AI-generated SAR narrative.
+
+E. Explainability and Audit Trail Results
+
+    The audit trail module was able to keep full reasoning logs of the generated SAR narration. The information that was stored consisted of:
+
+Triggered suspicious indicators 
+
+Evidence transaction IDs 
+
+Retrieved AML documents 
+
+Prompt snapshots 
+
+Generated outputs 
+
+Audit Trail Performance:
+
+Audit Component
+
+Status
+
+Rule Logging
+
+Successful
+
+Evidence Mapping
+
+Successful
+
+Document Tracking
+
+Successful
+
+Prompt Logging
+
+Successful
+
+Output Versioning
+
+Successful
+
+The explainability mechanism improved transparency and enabled analysts to trace why the system identified specific activities as suspicious.
+
+Fig. 6. Audit trail interface showing logged system and analyst activities, timestamps, and event records for traceability and compliance monitoring.
+
+F. Analyst Productivity Improvement
+
+The proposed system significantly reduced manual SAR drafting effort.
+
+Analyst Time Comparison
+
+Method
+
+Average Time per SAR
+
+Traditional Manual Drafting
+
+5–6 Hours
+
+Proposed AI-Based System
+
+20–30 Minutes
+
+The reduction in report preparation time demonstrates the operational efficiency of the proposed architecture.
+
+G. Discussion
+
+    The experiment results show that Explainable AI, Retrieval-Augmented Generation, and Large Language Models enhance the efficiency of SAR generation and its context relevance and transparency. The RAG module was able to articulate the generated narratives with the AML typologies and regulatory guidance effectively and thereby significantly reduced the hallucinated outputs typical of standalone LLM systems. The audit trail mechanism further enhanced the trust of the regulatory system since it was able to record detailed reasoning logs, along with mappings of evidence. Furthermore, the Human-in-the-Loop review function preserved ultimate compliance analysts' control over compliance reports generated, ensuring accountability and reliability in operations. In conclusion, the system proposed had a good potential to achieve automated AML reporting that was scalable, explainable and compliant with regulators.
+
+Future Scope
+
+The proposed SAR Narrative Generator could also be made even better by adding functionality that would allow the institution to monitor transactions in real time to detect suspicious activities and generate a SAR immediately. GNNs could be used to uncover any hidden transaction networks, mule accounts, circular transactions, and sophisticated layering patterns. Finance-focused large language models (LLMs) could contribute to better narrative generation and regulatory language. Adaptive ML-based risk scoring could be used to understand constantly evolving suspicious transaction patterns. Explainability could be improved through the use of SHAP and LIME techniques. The solution could be deployed through cloud-native architectures, microservices, Kubernetes, and scalable vector databases. Multilingual SAR generation could be considered for institutions that operate within different regulatory frameworks. Federated Learning could be used to collaborate with other financial institutions in a privacy-preserving manner. Integration with core banking systems, fraud monitoring systems, and case management solutions could help in creating end-to-end compliance workflows. Predictive compliance analytics could help in predicting any potential financial crimes, with the help of interactive explainability dashboards and continuous updates to the regulatory knowledge base.
+
+ Conclusion
+
+The suggested system uses Explainable AI to generate SAR reports which perform automated AML compliance functions. The system generates SAR reports through a combination of rule-based suspicious activity detection with RAG and LLMs and an audit trail system which produces clear and uniform SAR descriptions. The system performs customer profile analysis and transaction detail examination which helps to identify suspicious activities through its detection of multiple deposits and fast money transfers and worldwide operational patterns. The system uses RAG to find proper AML typologies and regulatory rules which help it build improved context that prevents hallucinations. The audit trail system keeps track of all rules which activated along with their corresponding evidence transactions and document retrievals and reasoning processes. Our system development through experimental research showed successful suspicious activity identification results and SAR reporting consistency and faster report generation times. Human-in-the-Loop allows for human analysis and approval of the created reports.
+
+References
+
+[1] P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. Küttler, M. Lewis, W. Yih, T. Rocktäschel, S. Riedel, and D. Kiela, “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,” Advances in Neural Information Processing Systems (NeurIPS), vol. 33, pp. 9459–9474, 2020. DOI: 10.48550/arXiv.2005.11401.
+
+[2] A. Bussmann, N. Giudici, D. Marinelli, and J. Papenbrock, “Explainable AI in Fintech Risk Management,” Frontiers in Artificial Intelligence, vol. 4, pp. 1–12, 2021. DOI: 10.3389/frai.2021.677857.
+
+[3] S. Roy, A. Das, and P. Saha, “Anti-Money Laundering Detection Using Machine Learning Methods,” International Journal of Advanced Computer Science and Applications, vol. 14, no. 2, pp. 112–120, 2023. DOI: 10.48550/arXiv.2302.05175.
+
+[4] Y. Liu, Z. Pan, and X. Wang, “Artificial Intelligence Techniques for Financial Fraud Detection: A Review,” IEEE Access, vol. 9, pp. 65785–65801, 2021. DOI: 10.1109/ACCESS.2021.3076313.
+
+[5] H. Yang, C. Wang, and L. Zhao, “Large Language Models in Finance: Applications and Challenges,” arXiv preprint arXiv:2311.10723, 2023. DOI: 10.48550/arXiv.2311.10723.
+
+[6] J. Devlin, M. Chang, K. Lee, and K. Toutanova, “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,” in Proceedings of NAACL-HLT, Minneapolis, MN, USA, 2019, pp. 4171–4186. DOI: 10.48550/arXiv.1810.04805.
+
+[7] T. Brown, B. Mann, N. Ryder, M. Subbiah, J. Kaplan, P. Dhariwal, et al., “Language Models are Few-Shot Learners,” in Advances in Neural Information Processing Systems (NeurIPS), vol. 33, pp. 1877–1901, 2020. DOI: 10.48550/arXiv.2005.14165.
+
+[8] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. Gomez, Ł. Kaiser, and I. Polosukhin, “Attention Is All You Need,” in Advances in Neural Information Processing Systems (NeurIPS), vol. 30, pp. 5998–6008, 2017. DOI: 10.48550/arXiv.1706.03762.
+
+[9] R. Guidotti, A. Monreale, S. Ruggieri, F. Turini, D. Pedreschi, and F. Giannotti, “A Survey of Methods for Explaining Black Box Models,” ACM Computing Surveys, vol. 51, no. 5, pp. 1–42, Jan. 2019. DOI: 10.1145/3236009.
+
+[10] D. Vassallo, S. Xu, and M. Bravo, “Human-in-the-Loop Machine Learning for Financial Services,” Journal of Financial Compliance, vol. 5, no. 3, pp. 245–259, 2021. DOI: 10.48550/arXiv.2108.00941.

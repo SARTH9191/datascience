@@ -11,7 +11,7 @@ import { useZeroTrustSession } from './ZeroTrustGate';
 const NAV_CORE = [
   { href: '/app',        icon: LayoutDashboard, label: 'Dashboard',  exact: true },
   { href: '/app/cases',  icon: FileText,        label: 'All Cases'              },
-  { href: '/app/demo',   icon: Play,            label: 'Demo Center'            },
+  { href: '/app/demo',   icon: Play,            label: 'Scenario Simulator'     },
 ];
 const NAV_INTEL = [
   { href: '/app/graph',    icon: Network,      label: 'Graph Explorer'   },
